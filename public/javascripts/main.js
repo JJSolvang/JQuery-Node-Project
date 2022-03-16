@@ -1,5 +1,3 @@
-let noteArray = [];
-let favNoteArray = [];
 let selectedType = "";
 
 // define a constructor to create note objects
@@ -33,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // page before show code *************************************************************************
     $(document).on("pagebeforeshow", "#list", function (event) {   
         createList();
+    });
+
+    // page before show code *************************************************************************
+    $(document).on("pagebeforeshow", "#favorites", function (event) {   
         createList2();
     });
     
@@ -62,7 +64,10 @@ function createList() {
     let newGameArray = Array.from(liList);
     newGameArray.forEach(function (element, i) {
         element.addEventListener('click', function () {
-            favNoteArray.push(noteArray[i]);
+            if (favNoteArray.includes(noteArray[i]) == false) {
+                favNoteArray.push(noteArray[i]);
+                console.log(noteArray[i]);
+            }
         });
     });
 };
